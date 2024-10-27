@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="warm_beige">#C8B89A</color>
+    <color name="Gold">#D4AF37</color>
+    <color name="Brass">#B8860B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="white_transparent">#FFFFFFFF</color>
+</resources>

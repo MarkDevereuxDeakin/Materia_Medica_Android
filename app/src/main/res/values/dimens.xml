@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <!-- Standard margin for the whole layout -->
+        <dimen name="default_margin">16dp</dimen>
+
+        <!-- Margin for the toolbar's right side -->
+        <dimen name="toolbar_margin_end">16dp</dimen>
+
+        <!-- Button padding for the dialog buttons -->
+        <dimen name="dialog_button_padding">16dp</dimen>
+</resources>

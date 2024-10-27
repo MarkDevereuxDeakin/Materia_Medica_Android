@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MATERIA MEDICA</string>
+    <string name="text_view_2">Text View 2</string>
+    <string name="categories_image">Categories Image</string>
+    <string name="medicines_image">Medicines Image</string>
+    <string name="recent_searches">RECENT SEARCHES</string>
+    <string name="categories_title">CATEGORIES</string>
+    <string name="medicines_title">MEDICINES</string>
+    <string name="recent_searches_title">RECENT SEARCHES</string>
+    <string name="materia_medica">MATERIA MEDICA</string>
+    <string name="app_title">Materia Medica</string>
+    <!-- Other string resources -->
+    <string name="medicine_image">Image of a medicine</string>
+</resources>
