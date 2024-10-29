@@ -206,68 +206,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return medicines;
     }
 
-    // Fetch Medicines data
-    public List<String> fetchMedicinesName() {
-        List<String> medicinesNames = new ArrayList<>();
+    public Medicines getMedicineByName(String name) {
+        Medicines medicine = null;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(Util.TABLE_NAME_2, new String[]{Util.MEDICINES_NAME}, null, null, null, null, null);
 
-        if (cursor != null) {
-            try {
-                int nameIndex = cursor.getColumnIndex(Util.MEDICINES_NAME);
-                if (nameIndex != -1 && cursor.moveToFirst()) {
-                    do {
-                        medicinesNames.add(cursor.getString(nameIndex));
-                    } while (cursor.moveToNext());
-                }
-            } finally {
-                cursor.close();
+        try (Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + Util.TABLE_NAME_2 + " WHERE " + Util.MEDICINES_NAME + " = ?",
+                new String[]{name})) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                String medicineName = getColumnValue(cursor, Util.MEDICINES_NAME);
+                String description = getColumnValue(cursor, Util.MEDICINES_DESCRIPTION);
+                String image = getColumnValue(cursor, Util.MEDICINES_IMAGE);
+                String references = getColumnValue(cursor, Util.MEDICINES_REFERENCES);
+
+                medicine = new Medicines(medicineName, description, image, references);
             }
+        } catch (Exception e) {
+            Log.e("Database Error", "Error fetching medicine by name", e);
         }
-        db.close();
-        return medicinesNames;
+
+        return medicine;
     }
 
-    public List<String> fetchMedicinesDescription() {
-        List<String> medicinesDescriptions = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(Util.TABLE_NAME_2, new String[]{Util.MEDICINES_DESCRIPTION}, null, null, null, null, null);
-
-        if (cursor != null) {
-            try {
-                int descriptionIndex = cursor.getColumnIndex(Util.MEDICINES_DESCRIPTION);
-                if (descriptionIndex != -1 && cursor.moveToFirst()) {
-                    do {
-                        medicinesDescriptions.add(cursor.getString(descriptionIndex));
-                    } while (cursor.moveToNext());
-                }
-            } finally {
-                cursor.close();
-            }
+    private String getColumnValue(Cursor cursor, String columnName) {
+        int columnIndex = cursor.getColumnIndex(columnName);
+        if (columnIndex != -1) {
+            return cursor.getString(columnIndex);
+        } else {
+            Log.w("DatabaseHelper", "Column not found: " + columnName);
+            return "";
         }
-        db.close();
-        return medicinesDescriptions;
-    }
-
-
-    public List<String> fetchMedicinesImage() {
-        List<String> medicinesImages = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(Util.TABLE_NAME_2, new String[]{Util.MEDICINES_IMAGE}, null, null, null, null, null);
-
-        if (cursor != null) {
-            try {
-                int imageIndex = cursor.getColumnIndex(Util.MEDICINES_IMAGE);
-                if (imageIndex != -1 && cursor.moveToFirst()) {
-                    do {
-                        medicinesImages.add(cursor.getString(imageIndex));
-                    } while (cursor.moveToNext());
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-        db.close();
-        return medicinesImages;
     }
 }

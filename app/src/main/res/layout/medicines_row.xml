@@ -21,12 +21,15 @@
         android:id="@+id/medicine_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_marginStart="16dp"
         android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/medicine_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:background="@color/semi_transparent_black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

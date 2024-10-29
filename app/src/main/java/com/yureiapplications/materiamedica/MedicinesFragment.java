@@ -96,10 +96,7 @@ public class MedicinesFragment extends Fragment implements MedicinesAdapter.onRo
     @Override
     public void onItemClick(Medicines medicine) {
         DetailsFragment detailsFragment = DetailsFragment.newInstance(
-                medicine.getMedicines_name(),
-                medicine.getMedicines_description(),
-                medicine.getMedicines_references(),
-                medicine.getMedicines_image()
+                medicine.getMedicines_name()
         );
 
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();

@@ -18,5 +18,8 @@
         android:layout_gravity="center_vertical"
         android:layout_marginStart="8dp"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:singleLine="false"
+        android:inputType="textMultiLine"
+        android:background="@color/semi_transparent_black"/>
 </LinearLayout>
