@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -57,6 +58,19 @@ public class CategoriesFragment extends Fragment implements CategoriesAdapter.on
         TextView fragmentTitle = view.findViewById(R.id.categories_fragment_title);
         fragmentTitle.setText(R.string.categories_title);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Adjust for system bars (notches, status bars, etc.)
+        ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
+            int topInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
+            view.setPadding(0, topInset, 0, 0);
+            return insets;
+        });
+    }
+
 
     // Configure the RecyclerView
     private void setupRecyclerView(View view) {
